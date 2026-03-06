@@ -1,0 +1,13 @@
+# sbt
+target/
+project/target/
+project/project/
+
+# IDE
+.idea/
+.metals/
+.bsp/
+
+# System
+.DS_Store
+Thumbs.db
