@@ -1,4 +1,4 @@
-# 🎵 AlbumVault — Persönliche Album-Bewertungs-App
+# 🎵 AlbumoftheYear — Persönliche Album-Bewertungs-App
 
 > Schulprojekt zur funktionalen Programmierung in Scala  
 > Lernziele: Pure/Impure Functions, Immutable Values, Rekursion
@@ -7,7 +7,7 @@
 
 ## 📌 Projektbeschreibung
 
-AlbumVault ist eine Konsolenanwendung, mit der Nutzer ihre Lieblingsalben erfassen, von 1–10 bewerten und verwalten können. Albumdaten (Künstler, Erscheinungsjahr, Genre) werden automatisch über die **MusicBrainz API** abgerufen, sodass der Nutzer nur den Albumtitel eingeben muss.
+AlbumoftheYear ist eine Konsolenanwendung, mit der Nutzer ihre Lieblingsalben erfassen, von 1–10 bewerten und verwalten können. Albumdaten (Künstler, Erscheinungsjahr, Genre) werden automatisch über die **MusicBrainz API** abgerufen, sodass der Nutzer nur den Albumtitel eingeben muss.
 
 Das Projekt ist bewusst iterativ aufgebaut: Phase 1 legt ein sauberes Scala-Backend mit funktionalen Prinzipien als Fundament, auf dem in späteren Phasen ein Frontend und weitere Features aufgebaut werden können.
 
@@ -42,7 +42,7 @@ Rekursion wird an mehreren Stellen bewusst eingesetzt:
 ## 🏗️ Projektstruktur
 
 ```
-albumvault/
+Albumoftheyear/
 ├── src/
 │   └── main/
 │       └── scala/
