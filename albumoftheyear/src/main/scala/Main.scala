@@ -48,7 +48,7 @@ def printMenu(): Unit =
   print("Auswahl: ")
 
 def handleAddAlbum(albums: List[Album]): List[Album] =
-  println("\n── Album hinzufuegen ──")
+  println("\n-- Album hinzufuegen --")
   val title = Validation.askNonEmptyInput("Albumtitel: ")
   print("Kuenstlername (optional, Enter ueberspringen): ")
   val artistInput = scala.io.StdIn.readLine().trim
@@ -88,7 +88,7 @@ def handleAddAlbum(albums: List[Album]): List[Album] =
       updated
 
 def handleShowAlbums(albums: List[Album]): Unit =
-  println("\n── Alben anzeigen ──")
+  println("\n-- Alben anzeigen --")
   println("Sortieren nach: (1) Rating  (2) Titel")
   print("Auswahl: ")
   val sort = scala.io.StdIn.readLine().trim
@@ -110,7 +110,7 @@ def handleShowAlbums(albums: List[Album]): Unit =
     println()
 
 def handleRateAlbum(albums: List[Album]): List[Album] =
-  println("\n── Album bewerten ──")
+  println("\n-- Album bewerten --")
   val title = Validation.askNonEmptyInput("Titel des Albums: ")
 
   AlbumService.findByTitle(albums, title) match
@@ -125,7 +125,7 @@ def handleRateAlbum(albums: List[Album]): List[Album] =
       updated
 
 def handleSearch(albums: List[Album]): Unit =
-  println("\n── Album suchen ──")
+  println("\n-- Album suchen --")
   val query = Validation.askNonEmptyInput("Suchbegriff: ")
 
   // PURE: Rekursive Suche via AlbumService
@@ -141,7 +141,7 @@ def handleSearch(albums: List[Album]): Unit =
       println(s"     Bewertung: $rating\n")
 
 def handleStats(albums: List[Album]): Unit =
-  println("\n── Statistiken ──")
+  println("\n-- Statistiken --")
 
   val total   = albums.length
   val rated   = AlbumService.ratedAlbums(albums).length
@@ -165,7 +165,7 @@ def handleStats(albums: List[Album]): Unit =
   println()
 
 def handleDeleteAlbum(albums: List[Album]): List[Album] =
-  println("\n── Album loeschen ──")
+  println("\n-- Album loeschen --")
   val title = Validation.askNonEmptyInput("Titel des Albums: ")
 
   AlbumService.findByTitle(albums, title) match
