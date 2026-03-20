@@ -65,7 +65,7 @@ object MusicBrainzClient:
           artist = artist,
           year   = year,
           genre  = genre,
-          rating = None 
+          rating = None
         ))
 
     catch
