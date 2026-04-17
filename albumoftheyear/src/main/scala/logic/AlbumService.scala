@@ -4,19 +4,31 @@ import models.Album
 
 object AlbumService:
 
+  def filterAlbums(albums: List[Album], predicate: Album => Boolean): List[Album] =
+    albums.filter(predicate)
+
+  def transformAlbums(albums: List[Album], transform: Album => Album): List[Album] =
+    albums.map(transform)
+
+  def sortAlbumsBy[B: Ordering](albums: List[Album], key: Album => B): List[Album] =
+    albums.sortBy(key)
+
+  def applyToRated(albums: List[Album], f: Album => Album): List[Album] =
+    albums.map(album => if album.rating.isDefined then f(album) else album)
+
   def addAlbum(albums: List[Album], album: Album): List[Album] =
-    albums :+ album  // Neue Liste = alte Liste + neues Album
+    albums :+ album
 
   def removeAlbum(albums: List[Album], id: String): List[Album] =
-    albums.filterNot(_.id == id)
+    filterAlbums(albums, _.id != id)
 
   def rateAlbum(albums: List[Album], id: String, rating: Int): List[Album] =
-    albums.map { album =>
+    transformAlbums(albums, album =>
       if album.id == id then
-        album.copy(rating = Some(rating))  // Neue Instanz, nicht mutation!
+        album.copy(rating = Some(rating))  // Neue Instanz, keine Mutation!
       else
         album
-    }
+    )
 
   def findByTitle(albums: List[Album], title: String): Option[Album] =
     albums match
@@ -29,7 +41,6 @@ object AlbumService:
           findByTitle(tail, title)  // REKURSIVER AUFRUF mit Rest der Liste
 
   def averageRating(albums: List[Album]): Option[Double] =
-    // Innere Hilfsfunktion: gibt (Summe, Anzahl) zurück
     def sumRatings(remaining: List[Album], acc: (Int, Int)): (Int, Int) =
       remaining match
         case Nil =>
@@ -43,20 +54,22 @@ object AlbumService:
     if count == 0 then None
     else Some(sum.toDouble / count)
 
+  // SPEZIFISCHE FILTER — nutzen alle filterAlbums() (HOF)
   def filterByArtist(albums: List[Album], artist: String): List[Album] =
-    albums.filter(_.artist.toLowerCase.contains(artist.toLowerCase))
+    filterAlbums(albums, _.artist.toLowerCase.contains(artist.toLowerCase))
 
   def filterByGenre(albums: List[Album], genre: String): List[Album] =
-    albums.filter(_.genre.toLowerCase.contains(genre.toLowerCase))
-
-  def sortByRating(albums: List[Album]): List[Album] =
-    albums.sortBy(_.rating.getOrElse(-1))(Ordering[Int].reverse)
-
-  def sortByTitle(albums: List[Album]): List[Album] =
-    albums.sortBy(_.title.toLowerCase)
+    filterAlbums(albums, _.genre.toLowerCase.contains(genre.toLowerCase))
 
   def ratedAlbums(albums: List[Album]): List[Album] =
-    albums.filter(_.rating.isDefined)
+    filterAlbums(albums, _.rating.isDefined)
 
   def unratedAlbums(albums: List[Album]): List[Album] =
-    albums.filter(_.rating.isEmpty)
+    filterAlbums(albums, _.rating.isEmpty)
+
+  // SORTIERUNG — nutzen sortAlbumsBy() (HOF)
+  def sortByRating(albums: List[Album]): List[Album] =
+    sortAlbumsBy(albums, _.rating.getOrElse(-1))(Ordering[Int].reverse)
+
+  def sortByTitle(albums: List[Album]): List[Album] =
+    sortAlbumsBy(albums, _.title.toLowerCase)

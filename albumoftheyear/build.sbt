@@ -11,3 +11,5 @@ libraryDependencies ++= Seq(
   // Für Tests (optional aber empfohlen)
   "org.scalatest" %% "scalatest" % "3.2.17" % Test
 )
+
+Test / parallelExecution := true

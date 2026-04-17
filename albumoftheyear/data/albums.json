@@ -6,5 +6,29 @@
     "year": 2021,
     "genre": "Album",
     "rating": "null"
+  },
+  {
+    "id": "917caedd-1879-4431-ade8-3aca5c3bdf45",
+    "title": "Lieb Mich Oder Lass Es Pt. 1",
+    "artist": "makko",
+    "year": 2023,
+    "genre": "Album",
+    "rating": "9"
+  },
+  {
+    "id": "fcbd356d-047b-4119-b2fc-7f4d70a8b4c3",
+    "title": "UTOPIA",
+    "artist": "Travis Scott",
+    "year": 2023,
+    "genre": "Album",
+    "rating": "9"
+  },
+  {
+    "id": "18db7ddc-b41e-4e84-8506-6ee56ac2e77d",
+    "title": "Queen",
+    "artist": "Queen",
+    "year": 2011,
+    "genre": "Album",
+    "rating": "10"
   }
 ]
